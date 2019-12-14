@@ -1,0 +1,18 @@
+{
+  "name": "node-test",
+  "version": "1.0.0",
+  "description": "Spotifyproject",
+  "main": "index.js",
+  "scripts": {
+    "test": "leftPad('String',10)"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "node": "^13.3.0",
+    "request": "^2.88.0",
+    "require": "^2.4.20"
+  }
+}
