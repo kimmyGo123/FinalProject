@@ -6,6 +6,7 @@
 let songData = null;
 let dataCount = null;
 let pointCount = 0;
+let instructions;
 // ALEXIA SAYS GET GITIGNORE
 u(document.getElementById('playlist')).on('click', function(){
     let a = axios.create({baseURL : 'https://api.spotify.com',
@@ -119,6 +120,13 @@ function createLabelsAndButtons(){
     pointCount.x = 5;
     pointCount.y = 5;
     app.stage.addChild(pointCount);
+
+    instructions = new PIXI.Text();
+    instructions. style = textStyle;
+    instructions.x = 5;
+    pointCount.y = 20;
+    app.stage.addChild(instructions);
+    instructions.text = "hit the space bar and right arrow key to watch him zoom!";
 }
         function setup() {
             createLabelsAndButtons();
@@ -222,7 +230,9 @@ function createLabelsAndButtons(){
             for (let c of fences) {
                 if (rectsIntersect(cow, c)) {
                     cow.stick = true;
-                    cow.y = c.getBounds().top -25;
+                  let test = c.getBounds().top;
+                 // console.log(cow.getBounds());
+                    cow.y = test-25;
                     cow.OnPlat = true;
                     //  }
                 }
@@ -235,7 +245,7 @@ function createLabelsAndButtons(){
                         console.log(collectedFoods);
                         let value = c;
                         c.isCollided = true;
-
+                        console.log(cow.getBounds());
                         foods = foods.filter(item => item !== value)
                         app.stage.removeChild(c);
 
