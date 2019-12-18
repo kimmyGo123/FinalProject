@@ -36,7 +36,7 @@ class Food extends PIXI.Sprite {
     }
     spawnRandom() {
         this.x += Math.floor(Math.random() * 10) * 25;
-        this.y = Math.floor(Math.random() * 10) + 300;
+        this.y = Math.floor(Math.random() * 10) +200;
     }
 }
 

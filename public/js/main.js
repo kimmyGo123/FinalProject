@@ -24,13 +24,30 @@ u(document.getElementById('playlist')).on('click', function(){
         let userID = response.data.id;
         let playlistID = null;
         let songID = null;
+        let song = null;
         a.get("/v1/users/" + userID + "/playlists").then(function(response){
            // console.log(response.data.items[0]);
              playlistID = response.data.items[0].id;
             // console.log(playlistID);
-             a.get('/v1/playlists/' + playlistID + "/tracks").then(function(response){
-                 songID = response.data.items[2].track.id;
-                console.log(response.data.items[2].track.id);
+          
+          
+            document.getElementById('spotifyThing').src = "https://open.spotify.com/embed/playlist/" +playlistID;
+
+            a.get('/v1/playlists/' + playlistID + "/tracks").then(function(response){
+                 var randomNumber =Math.floor(Math.random() * response.data.items.length)
+                 console.log(response.data.items);
+                 console.log(randomNumber);
+
+                  song = response.data.items[randomNumber];
+                  console.log(song);
+
+                 songID = song.track.id;
+                 let songName = song.track.name;
+                console.log(response.data.items[randomNumber].track.id);
+                document.getElementById('p1').innerHTML = `You're dancing to: ${songName}`;
+          
+               
+               
                 a.get('/v1/audio-analysis/' + songID).then(function(response){
                     songData = response.data.bars;
                     dataCount = songData.length;
@@ -49,7 +66,7 @@ u(document.getElementById('playlist')).on('click', function(){
         
     })
    
-                                          });
+ });
 
 
         let fences = [];
@@ -57,11 +74,14 @@ u(document.getElementById('playlist')).on('click', function(){
         let collectedFoods = 0;
         //Aliases
         let Application = PIXI.Application,
+        
             Container = PIXI.Container,
             loader = PIXI.loader,
             resources = PIXI.loader.resources,
             TextureCache = PIXI.utils.TextureCache,
             Sprite = PIXI.Sprite;
+            backgroundColor :0x061639;
+
         //Create a Pixi Application
         let app = new Application({
             width: 700,
@@ -69,10 +89,12 @@ u(document.getElementById('playlist')).on('click', function(){
             antialiasing: true,
             transparent: false,
             resolution: 1
+
         });
+        Application.backgroundColor=0x061639;
+
         let jump = false;
         let foods = [];
-
         let song; 
         //Add the canvas that Pixi automatically created for you to the HTML document
         document.body.appendChild(app.view);
@@ -103,7 +125,6 @@ function createLabelsAndButtons(){
             for (let i = 0; i < 4; i++) {
                 foods.push(new Food());
                 foods[i].spawnRandom();
-              //  console.log(foods[i].y);
                 app.stage.addChild(foods[i]);
 
             }
@@ -211,24 +232,20 @@ function createLabelsAndButtons(){
                 if (rectsIntersect(cow, c)) {
                     if(!c.isCollided){
                         collectedFoods++;
-pointCount.text = collectedFoods;
                         console.log(collectedFoods);
                         let value = c;
-    
                         c.isCollided = true;
-    foods = foods.filter(item => item !== c)
-    
-    //console.log(foods.cou)
-    app.stage.removeChild(c);
-    c.isCollided= true;
+
+                        foods = foods.filter(item => item !== value)
+                        app.stage.removeChild(c);
 
 
                     }
                
-                //    c.interactve = false;
                 }
             }
-      // console.log(songData);
+            pointCount.text = collectedFoods;
+
 
             if (cow.x > 700) {
                 for(let i = 0; i < 8; i++){
