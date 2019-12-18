@@ -4,7 +4,7 @@
   "description": "Spotifyproject",
   "main": "index.js",
   "engines": {
-    "node": "13.3.0"
+    "node": "10.16.3"
   },
   "author": "",
   "license": "ISC",
