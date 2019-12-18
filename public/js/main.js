@@ -21,7 +21,7 @@ u(document.getElementById('playlist')).on('click', function(){
 
     //NOTE: looking for GET https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}? Read the blog post.
 
-    console.log(document.cookie.split('='));
+    //console.log(document.cookie.split('='));
     a.get('/v1/me').then(function (response){
         let userID = response.data.id;
         let playlistID = null;
@@ -37,24 +37,28 @@ u(document.getElementById('playlist')).on('click', function(){
 
             a.get('/v1/playlists/' + playlistID + "/tracks").then(function(response){
                  var randomNumber =Math.floor(Math.random() * response.data.items.length)
-                 console.log(response.data.items);
-                 console.log(randomNumber);
+                //console.log(response.data.items);
+                 //console.log(randomNumber);
 
                   song = response.data.items[randomNumber];
-                  console.log(song);
+                 // console.log(song);
 
                  songID = song.track.id;
                  let songName = song.track.name;
-                console.log(response.data.items[randomNumber].track.id);
+                //console.log(response.data.items[randomNumber].track.id);
                 document.getElementById('p1').innerHTML = `You're dancing to: ${songName}`;
           
-               
+            
                
                 a.get('/v1/audio-analysis/' + songID).then(function(response){
-                    songData = response.data.bars;
-                    dataCount = songData.length;
-                //    console.log(songData);
-                  
+                //   songData = response.data.beats;
+                songData = response.data.segments;
+                  //  dataCount = songData.length;
+                  dataCount = songData.length;
+                  console.log(songData);
+                  console.log(dataCount);
+               //   console.log(dataCount);
+
                 })
             })
           
@@ -262,15 +266,18 @@ function createLabelsAndButtons(){
                 for(let i = 0; i < 8; i++){
                     foods.push(new Food());
                     foods[i].spawnRandom();
-                    
+                    console.log(foods.length);
                     app.stage.addChild(foods[i]);
-                    console.log("ere");
                 }
                 for (let c of fences) {
 
                    // console.log(Math.floor(Math.random() * dataCount));
-                    c.UpdateHeight([Math.floor(Math.random() * dataCount) + 1]);
 
+                  //  c.UpdateHeight([Math.floor(Math.random() * songData[dataCount]) + 1]);
+                  let testinggg = songData[Math.floor(Math.random() * dataCount)].pitches.length;
+                //  console.log(testinggg);
+                    c.UpdateHeight(songData[Math.floor(Math.random() * dataCount)].pitches[Math.floor(Math.random() * testinggg)] * 200);
+             //      console.log(songData[Math.floor(Math.random() * dataCount -1)] + 2);
                 }
 
                 cow.x = 0;
