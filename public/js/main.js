@@ -3,6 +3,7 @@
 
 //const u = require('umbrellajs');
 //const axios = require('axios').default;
+
 let songData = null;
 let dataCount = null;
 let pointCount = 0;
@@ -326,3 +327,4 @@ function createLabelsAndButtons(){
             );
             return key;
         }
+        document.querySelector(".content").appendChild(app.view);
