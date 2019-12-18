@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Spotifyproject",
   "main": "index.js",
-  "scripts": {
-    "test": "leftPad('String',10)"
+  "engines":{
+    "node": "6.11.1"
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
