@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Spotifyproject",
   "main": "index.js",
-  "engines":{
+  "engines": {
     "node": "13.3.0"
   },
-  
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -14,7 +13,9 @@
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "iframe": "^1.0.0",
     "node": "^13.3.0",
+    "pixi": "^0.3.1",
     "request": "^2.88.0",
     "require": "^2.4.20",
     "umbrellajs": "^3.1.0"
