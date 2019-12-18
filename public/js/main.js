@@ -33,7 +33,7 @@ u(document.getElementById('playlist')).on('click', function(){
             // console.log(playlistID);
           
           
-            document.getElementById('spotifyThing').src = "https://open.spotify.com/embed/playlist/" +playlistID;
+          //  document.getElementById('spotifyThing').src = "https://open.spotify.com/embed/playlist/" +playlistID;
 
             a.get('/v1/playlists/' + playlistID + "/tracks").then(function(response){
                  var randomNumber =Math.floor(Math.random() * response.data.items.length)
