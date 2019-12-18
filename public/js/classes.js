@@ -23,11 +23,24 @@ class Cow extends PIXI.Sprite {
     }
 
 }
+class bg extends PIXI.Sprite {
+    constructor(x = 0, y = 0, vx = 0, vy = 0) {
 
+        super(PIXI.loader.resources["media/bg.png"].texture);
+    //   this.anchor.set(.5, .5);
+        this.scale.set(1);
+        this.x = x;
+        this.y = y;
+        this.width = 700;
+        this.height = 500;
+ 
+    }
+
+
+}
 class Food extends PIXI.Sprite {
     constructor(x = 200, y = 100) {
         super(PIXI.loader.resources["media/spotcow.png"].texture);
-
         this.x = x;
         this.y = y;
         this.width = 40;

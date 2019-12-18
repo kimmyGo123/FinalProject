@@ -108,10 +108,13 @@ u(document.getElementById('playlist')).on('click', function(){
             .add("media/cow.png")
             .add("media/Unknown.png")
             .add("media/spotcow.png")
+            .add("media/bg.png")
             .load(setup);
         //Define any variables that are used in more than one function
         let cow, state;
 function createLabelsAndButtons(){
+    let bG = new bg();
+    app.stage.addChild(bG);
     let textStyle = new PIXI.TextStyle({
         fill: 0XFFFFFF, 
         fontSize:18, 
@@ -131,7 +134,7 @@ function createLabelsAndButtons(){
     instructions.x = 5;
     pointCount.y = 20;
     app.stage.addChild(instructions);
-    instructions.text = "hit the space bar and right arrow key to watch him zoom!";
+    instructions.text = "hit the space bar and right arrow key to watch him zoom! Jump to collect points!";
 }
         function setup() {
             createLabelsAndButtons();
@@ -227,7 +230,7 @@ function createLabelsAndButtons(){
             state = mooove;
 
             app.ticker.add(delta => gameLoop(delta));
-        
+          
         }
 
         function gameLoop(delta) {
@@ -263,12 +266,7 @@ function createLabelsAndButtons(){
 
 
             if (cow.x > 700) {
-                for(let i = 0; i < 8; i++){
-                    foods.push(new Food());
-                    foods[i].spawnRandom();
-                    console.log(foods.length);
-                    app.stage.addChild(foods[i]);
-                }
+           
                 for (let c of fences) {
 
                    // console.log(Math.floor(Math.random() * dataCount));
@@ -279,7 +277,12 @@ function createLabelsAndButtons(){
                     c.UpdateHeight(songData[Math.floor(Math.random() * dataCount)].pitches[Math.floor(Math.random() * testinggg)] * 200);
              //      console.log(songData[Math.floor(Math.random() * dataCount -1)] + 2);
                 }
-
+                for(let i = 0; i < 8; i++){
+                    foods.push(new Food());
+                    foods[i].spawnRandom();
+                    console.log(foods.length);
+                    app.stage.addChild(foods[i]);
+                }
                 cow.x = 0;
                 
                
