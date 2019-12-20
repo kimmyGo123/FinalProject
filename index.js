@@ -10,7 +10,7 @@ var client_secret = '7c122cd327564084b5987a43fa285eef'; // Your secret
 //var redirect_uri = 'https://people.rit.edu/kpg6728/235/p1/project.html'; // Your redirect uri
 //var redirect_uri = 'http://localhost:8888/callback/';
 
-var redirect_uri = 'https://final-project235.herokuapp.com/project.html';
+var redirect_uri = 'https://final-project235.herokuapp.com/callback/';
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
